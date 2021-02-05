@@ -1,20 +1,33 @@
-import React from "react";
+import React, {useState} from "react";
 
-function Sushi(props) {
+function Sushi({id, name, img_url, price, removeSushi}) {
+
+
+  const [isRemoved, setIsRemoved] = useState(false)
+
+  function sushiToRemove(){
+    setIsRemoved(!isRemoved)
+    removeSushi(id, price)
+
+    // setWallet = wallet - price
+    
+  }
+  
+
+  
   return (
-    <div className="sushi">
-      <div className="plate" onClick={/* Give me a callback! */ null}>
-        {/* Tell me if this sushi has been eaten! */}
-        {false ? null : (
+    <div className="sushi" id={id}>
+      <div className="plate" onClick={sushiToRemove}>
+          {isRemoved ? null : (
           <img
-            src={/* Give me an image source! */ null}
-            alt={/* Give me a name! */ "Sushi"}
+            src={img_url}
+            alt={name}
             width="100%"
           />
         )}
       </div>
       <h4 className="sushi-details">
-        {/* Give me a name! */} - ${/* Give me a price! */}
+        {name} - ${price}
       </h4>
     </div>
   );
